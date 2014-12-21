@@ -19,13 +19,12 @@ module Pickme
       OpenSSL::HMAC.hexdigest('sha256', Pickme.config.secret_key, policy)
     end
 
-    def self.apply(call = [:read, :convert], keys = ['policy', 'signature'])
+    def apply(call = [:read, :convert], keys = ['policy', 'signature'])
       raise SecretKeyMissing if Pickme.config.secret_key.nil?
-      grant = Policy.new
-      grant.call = call
+      self.call = call
       {
-        keys[0] => grant.policy,
-        keys[1] => grant.signature
+        keys[0] => policy,
+        keys[1] => signature
       }
     end
 
