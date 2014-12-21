@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Pickme::VERSION
   spec.authors       = ["Wayne Robinson"]
   spec.email         = ["wayne.robinson@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Helper for interacting with FilePicker.io's service.}
+  spec.description   = %q{Goal to be as plain-ruby as possible and to work independently of Rails.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
