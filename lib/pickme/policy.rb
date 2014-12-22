@@ -12,7 +12,7 @@ module Pickme
     end
 
     def policy
-      Base64.urlsafe_encode64(json_policy)
+      @policy ||= Base64.urlsafe_encode64(json_policy)
     end
 
     def signature
