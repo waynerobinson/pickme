@@ -33,7 +33,7 @@ module Pickme
       def json_policy
         hash = { expiry: Pickme.config.expiry.call }
 
-        [:expiry, :call, :handle, :maxsize, :minsize, :path].each do |input|
+        [:call, :handle, :maxsize, :minsize, :path].each do |input|
           hash[input] = send(input) unless send(input).nil?
         end
 
