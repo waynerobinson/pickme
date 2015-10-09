@@ -3,12 +3,23 @@ require 'openssl'
 
 module Pickme
   class Policy
-    attr_accessor :expiry, :call, :handle, :maxsize, :minsize, :path
+    attr_accessor :expiry, :call, :handle, :maxsize, :minsize, :container, :path
 
     def initialize(options = {})
       [:expiry, :call, :handle, :maxsize, :minsize, :path].each do |input|
         send("#{input}=", options[input]) unless options[input].nil?
       end
+    end
+
+    def config
+      {
+        api_key: Pickme.config.api_key,
+        path: path,
+        container: container,
+        maxsize: maxsize,
+        policy: policy,
+        signature: signature
+      }
     end
 
     def policy
@@ -33,7 +44,7 @@ module Pickme
       def json_policy
         hash = { expiry: Pickme.config.expiry.call }
 
-        [:call, :handle, :maxsize, :minsize, :path].each do |input|
+        [:expiry, :call, :handle, :maxsize, :minsize, :container, :path].each do |input|
           hash[input] = send(input) unless send(input).nil?
         end
 
